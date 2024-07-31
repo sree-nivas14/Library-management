@@ -1,0 +1,64 @@
+.top_menu {
+  background-color: var(--tab-color);
+  font-weight: 600;
+}
+
+.icon_design {
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.card {
+  border-radius: 0.625rem;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.result_icon {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.result_icon .text-success {
+  color: green;
+}
+
+.result_icon .text-danger {
+  color: red;
+}
+
+.bulk_upload_format {
+  position: absolute;
+  top: 24px;
+  right: 13px;
+  padding: 11px;
+}
+
+.bulk_upload_format:hover {
+  background-color: #dfe3e9;
+}
+
+#bulkupload {
+  position: relative;
+}
+
+.calendar_default_event_inner {
+  padding: 0 !important;
+  text-align: center; /* Center text horizontally */
+  display: flex;
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+  word-wrap: break-word; /* Allow word wrapping */
+  font-weight: bold;
+  border-radius: 0.625rem;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 20px 0 rgba(0, 0, 0, 0.19);
+  text-transform: capitalize;
+}
+
+.blur_button {
+  /* filter: blur(1px); */
+  pointer-events: none !important;
+  opacity: 0.6;
+}
