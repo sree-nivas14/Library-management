@@ -113,7 +113,10 @@ function BookRequest() {
                 class="badge rounded-pill bg-success d-block"
                 style={{ fontSize: "0.7rem" }}
               >
-                Available
+                Available{" "}
+                <span class="mx-1" style={{ fontSize: "0.7rem" }}>
+                  {datas[dataIndex].copies}
+                </span>
               </span>
             );
           }
