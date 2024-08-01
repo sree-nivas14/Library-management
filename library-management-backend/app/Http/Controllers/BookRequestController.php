@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\BookRequest;
+use App\Models\BookCopy;
 use DateTime;
 
 
@@ -28,6 +29,10 @@ class BookRequestController extends Controller
                     'user_id'=> $userId,
                     'book_id'=> $request->id
                 ]);
+                BookCopy::create([
+                    'user_id'=> $userId,
+                    'book_id'=> $request->id
+                ]);
                 return response()->json(['status'=>'success','message' => 'Request Submitted successfully'], 200);
             }
         } catch (Exception $e) {
@@ -48,7 +53,9 @@ class BookRequestController extends Controller
     public function rejectRequest(Request $request)
     {
         try {
+            $data = BookRequest::select('user_id','book_id')->where('id', $request->id)->first()->toArray();
             BookRequest::where('id', $request->id)->update(['status'=>'rejected']);
+            BookCopy::where('user_id', $data['user_id'])->where('book_id', $data['book_id'])->delete();
             return response()->json(['status'=>'success','message' => 'User Request Rejected Successfully'], 200);
         } catch (Exception $e) {
             return response()->json(['error' => 'Failed to fetch posts.'], 500);
@@ -72,6 +79,8 @@ class BookRequestController extends Controller
     public function returnRequest(Request $request)
     {
         try {
+            $data = BookRequest::select('user_id','book_id')->where('id', $request->id)->first()->toArray();
+
             $bookList = BookRequest::where('id', $request->id)->value('end_date');
             $date1 = new DateTime($bookList);
             $date2 = new DateTime($request->return_date);
@@ -85,6 +94,7 @@ class BookRequestController extends Controller
                 'late_days'     =>  $daysDifference,
                 'status'        =>  $request->status
             ]);
+            BookCopy::where('user_id', $data['user_id'])->where('book_id', $data['book_id'])->delete();
             return response()->json(['status'=>'success','message' => 'Book Returned Successfully'], 200);
         } catch (Exception $e) {
             return response()->json(['error' => 'Failed to fetch posts.'], 500);
