@@ -33,7 +33,7 @@ This project is a comprehensive Library Management System built using React for 
 1. Clone the repository:
     ```sh
     git clone https://github.com/sree-nivas14/Library-management.git
-    cd library-management-system/library-management-backend
+    cd library-management/library-management-backend
     ```
 
 2. Install dependencies:
@@ -52,7 +52,7 @@ This project is a comprehensive Library Management System built using React for 
     ```
 
 5. Run the migrations:
-   #### Create database name 'library_management_zoho' in MySql server 
+   #### Create a database in the MySQL server with the same name as specified in the DB_DATABASE field of the .env file.
    ```sh
     php artisan migrate
     ```
@@ -90,14 +90,20 @@ This project is a comprehensive Library Management System built using React for 
     ```
 
 ## Usage
-
-1. Register or log in to the system with following credentails for admin login.
-   Email - superadmin@gmail.com
-   password - superadmin@123
+### Admin Login:
+1. Register or log in to the system with the following credentials for admin login (Email: superadmin@gmail.com, Password: superadmin@123).
 2. Upon entering the application, it is possible to create multiple users with credentials. With those credentials, access to the user login is granted.
-3. Manage books, authors, and categories from the admin and user dashboard.
-4. Borrow and return books.
-5. Search and filter books based on different criteria.
+3. Manage books, users, and categories from the admin dashboard.
+4. The admin has access to add, update, delete, and view users and books.
+5. Search and filter books and users based on different criteria.
+6. Only the admin can approve or reject requests made by users and must update the system once a book has been returned.
+
+### User Login:
+1. To log in as a user, you must first log in to the application with admin credentials and add user details in the 'Manage Users' menu.
+2. With these credentials, users can log in to the application.
+3. The user dashboard provides complete information about the logged-in user, including borrowed and overdue books.
+4. Users can view books and their availability in the 'Book Request' menu and raise a request for a book to the admin.
+5. Once the admin approves the request, the book is allocated to the user, and all transactions are displayed in the 'Book Issue List' menu.
 
 
 ## Contact
