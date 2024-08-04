@@ -105,6 +105,11 @@ This project is a comprehensive Library Management System built using React for 
 4. Users can view books and their availability in the 'Book Request' menu and raise a request for a book to the admin.
 5. Once the admin approves the request, the book is allocated to the user, and all transactions are displayed in the 'Book Issue List' menu.
 
+## Screenshots
+### Admin login:
+![login_page](https://github.com/user-attachments/assets/ba4e9f19-ecf3-4eeb-8d59-c5017ff9dc2b)
+
+
 
 ## Contact
 
