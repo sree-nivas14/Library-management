@@ -7,6 +7,8 @@ use Auth;
 use App\Models\BookRequest;
 use App\Models\BookCopy;
 use DateTime;
+use App\Models\User;
+use App\Models\Book;
 
 
 class BookRequestController extends Controller
@@ -110,12 +112,76 @@ class BookRequestController extends Controller
         }
     }
 
-
     public function checkadmin()
     {
         try {
             $response = (Auth::user()->is_admin == 1) ? true : false;
             return response()->json($response, 200);
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Failed to fetch posts.'], 500);
+        }
+    }
+
+    public function dashboardData(){
+        try {
+            $user = Auth::user();
+            $totalUser = User::get()->count();
+            $totalBooks = Book::get()->pluck('copies')->toArray();
+            $totalCopies = array_sum($totalBooks);
+            $borrowedBooks = BookRequest::where('status','approved');
+            $borrowedBooks = ($user->is_admin == 1) ?  $borrowedBooks->count() : $borrowedBooks->where('user_id',$user->id)->count();
+            $overDueBooks = BookRequest::where('returned_date',null)->where('end_date','<',date('Y-m-d'));
+            $overDueBooks = ($user->is_admin == 1) ?  $overDueBooks->count() : $overDueBooks->where('user_id',$user->id)->count();
+            if($user->is_admin == 1){
+                $data = [
+                    [
+                        'icon'=>'fa-users fa-2x  text-white',
+                        'color'=>'#FFC107',
+                        'words'=>'Total Users',
+                        'count'=>$totalUser
+                    ],
+                    [
+                        'icon'=>'fa-book fa-2x text-white',
+                        'color'=>'#DC3545',
+                        'words'=>'Total Books',
+                        'count'=>$totalCopies
+                    ],
+                    [
+                        'icon'=>'fa-book-open-reader fa-2x text-white',
+                        'color'=>'#28A745',
+                        'words'=>'Borrowed Books',
+                        'count'=>$borrowedBooks
+                    ],
+                    [
+                        'icon'=>'fa-clock fa-2x text-white',
+                        'color'=>'#007BFF',
+                        'words'=>'Overdue Books',
+                        'count'=>$overDueBooks
+                    ],
+                ];
+            }else{
+                $data = [
+                    [
+                        'icon'=>'fa-book fa-2x text-white',
+                        'color'=>'#DC3545',
+                        'words'=>'Total Books',
+                        'count'=>$totalCopies
+                    ],
+                    [
+                        'icon'=>'fa-book-open-reader fa-2x text-white',
+                        'color'=>'#28A745',
+                        'words'=>'Borrowed Books',
+                        'count'=>$borrowedBooks
+                    ],
+                    [
+                        'icon'=>'fa-clock fa-2x text-white',
+                        'color'=>'#007BFF',
+                        'words'=>'Overdue Books',
+                        'count'=>$overDueBooks
+                    ],
+                ];
+            }
+            return response()->json($data,200);
         } catch (Exception $e) {
             return response()->json(['error' => 'Failed to fetch posts.'], 500);
         }

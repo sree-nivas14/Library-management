@@ -44,3 +44,4 @@ Route::post('/rejectRequest',[BookRequestController::class,'rejectRequest'])->na
 Route::post('/approveRequest',[BookRequestController::class,'approveRequest'])->name('approveRequest')->middleware('auth:api');
 Route::post('/returnRequest',[BookRequestController::class,'returnRequest'])->name('returnRequest')->middleware('auth:api');
 Route::get('/checkadmin',[BookRequestController::class,'checkadmin'])->name('checkadmin')->middleware('auth:api');
+Route::get('/dashboardData',[BookRequestController::class,'dashboardData'])->name('dashboardData')->middleware('auth:api');

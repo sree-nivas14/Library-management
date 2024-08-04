@@ -11,6 +11,9 @@ const helpers = {
   checkadmin: function () {
     return axios.get(API_URL + "checkadmin", authorization);
   },
+  dashboardData: function () {
+    return axios.get(API_URL + "dashboardData", authorization);
+  },
   register: function (data) {
     return axios.post(API_URL + "register", data);
   },

@@ -70,14 +70,7 @@ function SideNavigationBar({ auth }) {
                   </li>
                 </>
               )}
-              <li>
-                <NavLink to="/BookRequest" activeclassname="active">
-                  <div className="icon">
-                    <i className="fa-solid fa-paper-plane"></i>
-                  </div>
-                  <span className="link hide">Book Request</span>
-                </NavLink>
-              </li>
+
               <li>
                 <NavLink to="/RequestList" activeclassname="active">
                   <div className="icon">
