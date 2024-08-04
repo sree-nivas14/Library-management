@@ -81,9 +81,7 @@ class BookController extends Controller
                     ->where('copies', $request->copies)
                     ->where('id',$request->id)
                     ->count();
-                    $exists = Book::where('isbn', $request->isbn)
-                    ->exists();
-            if ($dataIsPresent != 0 || $exists) {
+            if ($dataIsPresent != 0) {
                 $response = 1;
             } else {
                 Book::where('id', $request->id)->update([
