@@ -107,8 +107,51 @@ This project is a comprehensive Library Management System built using React for 
 
 ## Screenshots
 ### Admin login:
+1. Login page
 ![login_page](https://github.com/user-attachments/assets/ba4e9f19-ecf3-4eeb-8d59-c5017ff9dc2b)
 
+2. Admin dashboard.
+![admin_dashboard](https://github.com/user-attachments/assets/5bb91c5f-6606-4a3d-ab00-a06595dd35b8)
+
+3. Manage Users - view screen.
+![admin_manage_users_view](https://github.com/user-attachments/assets/9d9d7f38-7cfc-45af-b388-22cf5cc69e49)
+
+4. Manage Users - add screen.
+![admin_manage_users_add](https://github.com/user-attachments/assets/fb999698-b551-440b-9de5-e3482116abd5)
+
+5. Manage Users - update screen.
+![admin_manage_users_edit](https://github.com/user-attachments/assets/52f6acfa-1cef-4366-9269-39eee0f4b964)
+
+6. Manage Books - view screen.
+![admin_manage_books_view](https://github.com/user-attachments/assets/cf7689c3-3209-4a1e-8417-c6717ba4f4e6)
+
+7. Manage Books - add screen.
+![admin_manage_books_add](https://github.com/user-attachments/assets/7a642c80-aa0e-457b-8bc4-93169e69989e)
+
+8. Manage Books - update screen.
+![admin_manage_books_edit](https://github.com/user-attachments/assets/69943a7b-3950-48e0-bc66-f390fdf739c0)
+
+9. Book Issue List - view screen.
+![admin_issue_list_view](https://github.com/user-attachments/assets/9499b835-ec03-47bc-bc7b-d5ba94e31d25)
+
+10. Book Issue List - Approve screen.
+![admin_approve_issue_list](https://github.com/user-attachments/assets/df15771b-b901-4306-baac-3943ec812bc2)
+
+11. Book Issue List - Reject screen.
+![admin_reject_issue_list](https://github.com/user-attachments/assets/ef8963b7-7650-490f-83eb-20dfffd48373)
+
+12. Book Issue List - Return screen.
+![admin_return_issue_list](https://github.com/user-attachments/assets/626e314d-b886-4917-80bf-2aa3501b415f)
+
+### User login:
+1. User dashboard.
+![user_dashboard](https://github.com/user-attachments/assets/015d1ac4-742b-4cc0-b1f8-3f648026fc34)
+
+2. Book Request - view screen.
+![user_book_request_list](https://github.com/user-attachments/assets/b0f38b1e-d8e8-4ac3-8bd4-ce440c25de75)
+
+3. Book Issue List - view screen.
+![user_issue_list](https://github.com/user-attachments/assets/7e24c44b-d4a4-4a8e-9131-87141f914843)
 
 
 ## Contact
