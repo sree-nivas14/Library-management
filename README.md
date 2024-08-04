@@ -33,7 +33,7 @@ This project is a comprehensive Library Management System built using React for 
 1. Clone the repository:
     ```sh
     git clone https://github.com/sree-nivas14/Library-management.git
-    cd library-management-system/backend
+    cd library-management-system/library-management-backend
     ```
 
 2. Install dependencies:
@@ -52,11 +52,16 @@ This project is a comprehensive Library Management System built using React for 
     ```
 
 5. Run the migrations:
-   #### Create database '' in MySql server 
+   #### Create database name 'library_management_zoho' in MySql server 
    ```sh
     php artisan migrate
     ```
-
+   
+6. Run the seeders:
+   ```sh
+    php artisan db:seed --class=UserSeeder
+    ```
+   
 7. Install Laravel Passport:
     ```sh
     php artisan passport:install
@@ -71,7 +76,7 @@ This project is a comprehensive Library Management System built using React for 
 
 1. Navigate to the frontend directory:
     ```sh
-    cd ../frontend
+    cd ../library-management-frontend
     ```
 
 2. Install dependencies:
@@ -79,12 +84,7 @@ This project is a comprehensive Library Management System built using React for 
     npm install
     ```
 
-3. Create a `.env` file with the following content:
-    ```env
-    REACT_APP_API_URL=http://localhost:8000/api
-    ```
-
-4. Start the development server:
+3. Start the development server:
     ```sh
     npm start
     ```
