@@ -91,10 +91,13 @@ This project is a comprehensive Library Management System built using React for 
 
 ## Usage
 
-1. Register or log in to the system.
-2. Manage books, authors, and categories from the admin dashboard.
-3. Borrow and return books.
-4. Search and filter books based on different criteria.
+1. Register or log in to the system with following credentails for admin login.
+   Email - superadmin@gmail.com
+   password - superadmin@123
+2. Upon entering the application, it is possible to create multiple users with credentials. With those credentials, access to the user login is granted.
+3. Manage books, authors, and categories from the admin and user dashboard.
+4. Borrow and return books.
+5. Search and filter books based on different criteria.
 
 
 ## Contact
