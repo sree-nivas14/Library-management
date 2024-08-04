@@ -96,9 +96,9 @@ function Sign_in() {
               >
                 <h3>Login Here</h3>
                 <div className="mt-5">
-                  <label htmlFor="username">Mail ID</label>
+                  <label htmlFor="username">Email</label>
                   <input
-                    className="input"
+                    className="input  fw-normal"
                     onChange={(e) => {
                       setMail(e.target.value);
                       handleChange(e);
@@ -107,7 +107,7 @@ function Sign_in() {
                     name="email"
                     onBlur={handleBlur}
                     value={values.email}
-                    placeholder="Enter email id"
+                    // placeholder="Email"
                     id="email"
                   />
                   {/* If validation is not passed show errors */}
@@ -118,7 +118,7 @@ function Sign_in() {
                   <input
                     type="password"
                     name="password"
-                    placeholder="Password"
+                    // placeholder="Password"
                     id="password"
                     className="input"
                     value={values.password}
