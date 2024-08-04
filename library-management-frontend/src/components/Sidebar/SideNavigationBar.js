@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SideNavigationBar.css";
-import college_logo from "./college_logo.png";
+import college_logo from "./logo.png";
 import { NavLink } from "react-router-dom";
 
 function SideNavigationBar({ auth }) {
@@ -19,12 +19,8 @@ function SideNavigationBar({ auth }) {
           <img src={college_logo} className="logo" alt="College Logo" />
           <div className="hide">
             <div className="d-flex flex-column">
-              <div className="side_top_nav">KLN</div>
-              <div className="side_sub_top_nav">College Of Engineering</div>
+              <div className="side_sub_top_nav">Library Management</div>
             </div>
-            {/* <span>KLN</span>
-            <br />
-            <span>College Of Engineering</span> */}
           </div>
         </div>
         <div className="sidebar-links">
@@ -33,7 +29,7 @@ function SideNavigationBar({ auth }) {
               <li>
                 <NavLink exact="true" to="/Dashboard" activeclassname="active">
                   <div className="icon">
-                    <i className="fas fa-users"></i>
+                    <i class="fa-solid fa-chart-line"></i>
                   </div>
                   <span className="link hide">Dashboard</span>
                 </NavLink>
@@ -75,9 +71,17 @@ function SideNavigationBar({ auth }) {
                 </>
               )}
               <li>
-                <NavLink to="/RequestList" activeclassname="active">
+                <NavLink to="/BookRequest" activeclassname="active">
                   <div className="icon">
                     <i className="fa-solid fa-paper-plane"></i>
+                  </div>
+                  <span className="link hide">Book Request</span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/RequestList" activeclassname="active">
+                  <div className="icon">
+                    <i class="fa-solid fa-address-book"></i>
                   </div>
                   <span className="link hide">Book Issue List</span>
                 </NavLink>
@@ -89,7 +93,9 @@ function SideNavigationBar({ auth }) {
                   <div className="icon">
                     <i className="fas fa-sign-out-alt"></i>
                   </div>
-                  <span className="link hide">Logout</span>
+                  <span className="link hide">
+                    Logout ({sessionStorage.getItem("username")})
+                  </span>
                 </NavLink>
               </li>
             </div>

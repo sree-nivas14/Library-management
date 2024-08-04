@@ -22,6 +22,7 @@ class CreateBookRequestTable extends Migration
             $table->date('end_date')->nullable();
             $table->date('returned_date')->nullable();
             $table->integer('late_days')->nullable();
+            $table->string('remark')->nullable();
             $table->timestamps();
         });
     }

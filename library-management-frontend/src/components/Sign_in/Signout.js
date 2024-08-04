@@ -6,28 +6,26 @@ import { useAuth } from "../../AuthContext";
 function Signout() {
   const { logout } = useAuth();
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   document.getElementById("fp-container").style.visibility = "visible";
-  //   helpers
-  //     .signout()
-  //     .then((response) => {
-  //       document.getElementById("fp-container").style.visibility = "hidden";
-  //       //console.log(response.data);
-  //       if (response.data == "success") {
-  //         logout();
-  //         sessionStorage.clear();
-  //         navigate("/");
-  //       }
-  //     })
-  //     .catch(function (error) {
-  //       document.getElementById("fp-container").style.visibility = "hidden";
-  //       alert(error.response.data.message);
-  //     });
-  // }, []);
+  const clear_session = () => {
+    document.getElementById("fp-container").style.visibility = "visible";
+    helpers
+      .signout()
+      .then((response) => {
+        document.getElementById("fp-container").style.visibility = "hidden";
+        if (response.data == "success") {
+          logout();
+          sessionStorage.clear();
+          navigate("/");
+        }
+      })
+      .catch(function (error) {
+        document.getElementById("fp-container").style.visibility = "hidden";
+        alert(error.response.data.message);
+      });
+  };
+
   useEffect(() => {
-    logout();
-    sessionStorage.clear();
-    navigate("/");
+    clear_session();
   }, []);
 
   return (

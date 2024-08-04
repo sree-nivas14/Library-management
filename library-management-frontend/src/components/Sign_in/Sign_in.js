@@ -11,8 +11,6 @@ import { useAuth } from "../../AuthContext";
 function Sign_in() {
   const [mail, setMail] = useState();
   const [password, setpassword] = useState();
-  const [question_count, setQuestion_count] = useState(4);
-  const [timer, setTimer] = useState(1);
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -54,14 +52,17 @@ function Sign_in() {
                     document.getElementById("fp-container").style.visibility =
                       "hidden";
                     if (response.data != 1) {
-                      // console.log(response.data.role);
-                      // window.sessionStorage.setItem("username", username);
+                      window.sessionStorage.setItem(
+                        "username",
+                        response.data.user
+                      );
                       window.sessionStorage.setItem(
                         "token",
                         response.data.token.accessToken
                       );
                       login(response.data.role);
                       navigate("/Dashboard");
+                      window.location.reload();
                     } else {
                       toast("Invalid Credentials.", {
                         type: "error",
@@ -73,7 +74,6 @@ function Sign_in() {
                       "hidden";
                     alert(error.message);
                   });
-                // navigate("/logout");
               } else {
                 document.getElementById("fp-container").style.visibility =
                   "hidden";
@@ -105,7 +105,6 @@ function Sign_in() {
                     }}
                     type="email"
                     name="email"
-                    // onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.email}
                     placeholder="Enter email id"
@@ -123,7 +122,6 @@ function Sign_in() {
                     id="password"
                     className="input"
                     value={values.password}
-                    // onChange={handleChange}
                     onChange={(e) => {
                       setpassword(e.target.value);
                       handleChange(e);
@@ -133,13 +131,7 @@ function Sign_in() {
                   <p className="error text-danger">
                     {errors.password && touched.password && errors.password}
                   </p>
-                  <button
-                    className="button mt-5"
-                    type="submit"
-                    // onClick={(e) => {
-                    //   handle_click(e);
-                    // }}
-                  >
+                  <button className="button mt-5" type="submit">
                     Log In
                   </button>
                 </div>

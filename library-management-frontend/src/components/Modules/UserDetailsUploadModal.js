@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -9,6 +9,11 @@ const UserDetailsUploadModal = ({
   handleSubmit,
   initialValues,
 }) => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prevState) => !prevState);
+  };
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -90,25 +95,42 @@ const UserDetailsUploadModal = ({
                     />
                   </div>
                 </div>
-                <div class="row align-items-center my-3">
-                  <div class="col-4 text-right">
-                    <label className="m-0" htmlFor="password">
-                      Password
-                    </label>
-                  </div>
-                  <div class="col-8">
-                    <Field
-                      name="password"
-                      type="text"
-                      className="form-control"
-                    />
-                    <ErrorMessage
-                      name="password"
-                      component="div"
-                      className="text-danger"
-                    />
-                  </div>
-                </div>
+                {!initialValues.id ? (
+                  <>
+                    <div class="row align-items-center my-3">
+                      <div class="col-4 text-right">
+                        <label className="m-0" htmlFor="password">
+                          Password
+                        </label>
+                      </div>
+                      <div class="col-8">
+                        <div className="d-flex align-items-center">
+                          <Field
+                            name="password"
+                            className="form-control"
+                            type={isPasswordVisible ? "text" : "password"}
+                          />
+                          <i
+                            className={`ms-2 toggle-password-icon ${
+                              isPasswordVisible
+                                ? "fa-regular fa-eye-slash"
+                                : "fa-regular fa-eye"
+                            }`}
+                            onClick={togglePasswordVisibility}
+                          />
+                        </div>
+                        <ErrorMessage
+                          name="password"
+                          component="div"
+                          className="text-danger"
+                        />
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  ""
+                )}
+
                 <div class="row align-items-center my-3">
                   <div class="col-4 text-right">
                     <label className="m-0" htmlFor="phone_no">
@@ -135,7 +157,11 @@ const UserDetailsUploadModal = ({
                     </label>
                   </div>
                   <div class="col-8">
-                    <Field name="role" type="text" className="form-control" />
+                    <Field name="role" as="select" className="form-control">
+                      <option value="">Select a role</option>
+                      <option value="admin">Admin</option>
+                      <option value="user">User</option>
+                    </Field>
                     <ErrorMessage
                       name="role"
                       component="div"

@@ -8,7 +8,6 @@ import { Form, Modal, Button } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
-import { json } from "react-router-dom";
 
 function RequestList() {
   const [data, setData] = useState();
@@ -92,12 +91,15 @@ function RequestList() {
   };
 
   const handleReject = (value) => {
-    var confirmed = window.confirm(
-      "Are you sure you want to reject the user request?"
+    // var confirmed = window.confirm(
+    //   "Are you sure you want to reject the user request?"
+    // );
+    let confirmed = prompt(
+      "Are you sure you want to reject the user request? \n\nRemarks* "
     );
     if (confirmed) {
       document.getElementById("fp-container").style.visibility = "visible";
-      var datas = { id: value };
+      var datas = { id: value, confirmed };
       helpers
         .rejectRequest(datas)
         .then((response) => {
@@ -113,6 +115,10 @@ function RequestList() {
           document.getElementById("fp-container").style.visibility = "hidden";
           alert(error.response.data.message);
         });
+    } else {
+      toast("Please provide the remark for rejection.", {
+        type: "error",
+      });
     }
   };
 
@@ -122,18 +128,20 @@ function RequestList() {
       .getRequestList()
       .then((response) => {
         document.getElementById("fp-container").style.visibility = "hidden";
-        //console.log(response.data);
         setData(response.data);
       })
       .catch(function (error) {
         document.getElementById("fp-container").style.visibility = "hidden";
-        //console.log(error.response);
         alert(error.response.data.message);
       });
   };
 
   const columns = [
-    { name: "id", label: "ID", options: { filter: true, sort: true } },
+    {
+      name: "serial_no",
+      label: "Sl No",
+      options: { filter: true, sort: true },
+    },
     {
       name: "id_no",
       label: "IDENTITY NO",
@@ -185,7 +193,12 @@ function RequestList() {
     },
     {
       name: "late_days",
-      label: "LATE DAYS",
+      label: "DELAY(in days)",
+      options: { filter: true, sort: true },
+    },
+    {
+      name: "remark",
+      label: "REMARKS",
       options: { filter: true, sort: true },
     },
     {
@@ -245,7 +258,11 @@ function RequestList() {
     },
   ];
   const columns_user = [
-    { name: "id", label: "ID", options: { filter: true, sort: true } },
+    {
+      name: "serial_no",
+      label: "Sl No",
+      options: { filter: true, sort: true },
+    },
     {
       name: "id_no",
       label: "IDENTITY NO",
@@ -297,7 +314,12 @@ function RequestList() {
     },
     {
       name: "late_days",
-      label: "LATE DAYS",
+      label: "DELAY(in days)",
+      options: { filter: true, sort: true },
+    },
+    {
+      name: "remark",
+      label: "REMARKS",
       options: { filter: true, sort: true },
     },
   ];
@@ -315,22 +337,21 @@ function RequestList() {
     <div className="fluid-container">
       <ToastContainer position="top-right" theme="dark" />
 
-      <div className="top_menu p-3 d-flex justify-content-start align-items-center">
+      <div className="top_menu p-2 d-flex justify-content-start align-items-center">
         <div className="px-3">
-          <i className="fa-solid fa-paper-plane fa-2x icon_design "></i>
+          <i className="fa-solid fa-address-book fa-2x icon_design "></i>
         </div>
         <div className="px-2 my-1">
-          <h4 className="my-1">Book Request</h4>
+          <h4 className="my-1">Book Issue List</h4>
         </div>
       </div>
       <div>
         <div class="card m-5 p-3 ">
           <div class="card-body">
             <Datatable
-              // handledelete={handledelete}
               columns={isAdmin ? columns : columns_user}
               data={datas}
-              tablename={"Book List"}
+              tablename={"Book Issue List"}
               hideDeleteOption={true}
             />
           </div>

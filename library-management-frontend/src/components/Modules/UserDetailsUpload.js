@@ -26,12 +26,10 @@ function UserDetailsUpload() {
       .getUserList()
       .then((response) => {
         document.getElementById("fp-container").style.visibility = "hidden";
-        //console.log(response.data);
         setData(response.data);
       })
       .catch(function (error) {
         document.getElementById("fp-container").style.visibility = "hidden";
-        //console.log(error.response);
         alert(error.response.data.message);
       });
   };
@@ -91,7 +89,6 @@ function UserDetailsUpload() {
         .updateUser(values)
         .then((response) => {
           document.getElementById("fp-container").style.visibility = "hidden";
-          //console.log(response.data);
           if (response.data == 0) {
             toast("User Updated Successfully.", {
               type: "success",
@@ -114,7 +111,6 @@ function UserDetailsUpload() {
         .addUser(values)
         .then((response) => {
           document.getElementById("fp-container").style.visibility = "hidden";
-          //console.log(response.data);
           if (response.data == 0) {
             toast("User added successfully.", {
               type: "success",
@@ -184,8 +180,6 @@ function UserDetailsUpload() {
           return (
             <IconButton
               onClick={() => {
-                // Handle edit action here, for example:
-                // console.log("Edit button clicked for row:", datas[dataIndex]);
                 setInitialValues({
                   id: datas[dataIndex].id,
                   identity_no: datas[dataIndex].id_no,
@@ -212,7 +206,7 @@ function UserDetailsUpload() {
     <div className="fluid-container">
       <ToastContainer position="top-right" theme="dark" />
 
-      <div className="top_menu p-3 d-flex justify-content-start align-items-center">
+      <div className="top_menu p-2 d-flex justify-content-start align-items-center">
         <div className="px-3">
           <i className="fas fa-users fa-2x icon_design "></i>
         </div>

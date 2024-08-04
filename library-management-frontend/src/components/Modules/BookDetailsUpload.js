@@ -26,12 +26,10 @@ function BookDetailsUpload() {
       .getBookList()
       .then((response) => {
         document.getElementById("fp-container").style.visibility = "hidden";
-        //console.log(response.data);
         setData(response.data);
       })
       .catch(function (error) {
         document.getElementById("fp-container").style.visibility = "hidden";
-        //console.log(error.response);
         alert(error.response.data.message);
       });
   };
@@ -223,7 +221,7 @@ function BookDetailsUpload() {
     <div className="fluid-container">
       <ToastContainer position="top-right" theme="dark" />
 
-      <div className="top_menu p-3 d-flex justify-content-start align-items-center">
+      <div className="top_menu p-2 d-flex justify-content-start align-items-center">
         <div className="px-3">
           <i class="fa-solid fa-book fa-2x icon_design "></i>
         </div>
@@ -246,7 +244,7 @@ function BookDetailsUpload() {
               handledelete={handledelete}
               columns={columns}
               data={datas}
-              tablename={"Users List"}
+              tablename={"Books List"}
             />
           </div>
         </div>

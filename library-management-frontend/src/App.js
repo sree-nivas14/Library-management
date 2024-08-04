@@ -22,7 +22,6 @@ import { useAuth } from "./AuthContext";
 
 const App = () => {
   const { auth } = useAuth();
-  console.log(auth);
   return (
     <BrowserRouter>
       <Routes>
@@ -31,17 +30,26 @@ const App = () => {
         <Route path="/Signout" element={<Signout />} />
         <Route element={<ProtectedRoutes />}>
           <Route path="/Dashboard" element={<Dashboards auth={auth} />} />
-          {/* {auth.role === "admin" && (
-            <> */}
-          <Route path="/UserDetailsUpload" element={<Users auth={auth} />} />
-          <Route path="/BookDetailsUpload" element={<Books auth={auth} />} />
-          {/* </>
+          {auth.role === "admin" && (
+            <>
+              <Route
+                path="/UserDetailsUpload"
+                element={<Users auth={auth} />}
+              />
+              <Route
+                path="/BookDetailsUpload"
+                element={<Books auth={auth} />}
+              />
+            </>
           )}
           {auth.role === "user" && (
-            <> */}
-          <Route path="/BookRequest" element={<BookRequests auth={auth} />} />
-          {/* </>
-          )} */}
+            <>
+              <Route
+                path="/BookRequest"
+                element={<BookRequests auth={auth} />}
+              />
+            </>
+          )}
           <Route path="/RequestList" element={<RequestLists auth={auth} />} />
           <Route path="/data_table" element={<DataTable />} />
         </Route>

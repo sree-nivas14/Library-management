@@ -14,8 +14,6 @@ class BookRequestController extends Controller
     public function sendBookRequest(Request $request)
     {
         try {
-            // dump(Auth::user()->id);
-            // dd($request->id);
             $userId = Auth::user()->id;
             $exists = BookRequest::where('user_id', $userId)
                     ->where('book_id', $request->id)
@@ -43,7 +41,18 @@ class BookRequestController extends Controller
     public function getRequestList()
     {
         try {
-            $data = BookRequest::join('books','book_requests.book_id','books.id')->join('users','book_requests.user_id','users.id')->select('users.*','books.title','book_requests.*')->get();
+            $authData = Auth::user();
+            $data = BookRequest::join('books','book_requests.book_id','books.id')
+                    ->join('users','book_requests.user_id','users.id')
+                    ->select('users.*','books.title','book_requests.*');
+            if($authData->is_admin == 1){
+                $data = $data->get();
+            }else{
+                $data = $data->where('user_id',$authData->id)->get();
+            }
+            foreach($data as $key => $value){
+                $value['serial_no'] = $key+1;
+            }
             return response()->json($data,200);
         } catch (Exception $e) {
             return response()->json(['error' => 'Failed to fetch posts.'], 500);
@@ -54,7 +63,7 @@ class BookRequestController extends Controller
     {
         try {
             $data = BookRequest::select('user_id','book_id')->where('id', $request->id)->first()->toArray();
-            BookRequest::where('id', $request->id)->update(['status'=>'rejected']);
+            BookRequest::where('id', $request->id)->update(['status'=>'rejected','remark'=>$request->confirmed]);
             BookCopy::where('user_id', $data['user_id'])->where('book_id', $data['book_id'])->delete();
             return response()->json(['status'=>'success','message' => 'User Request Rejected Successfully'], 200);
         } catch (Exception $e) {
@@ -110,39 +119,5 @@ class BookRequestController extends Controller
         } catch (Exception $e) {
             return response()->json(['error' => 'Failed to fetch posts.'], 500);
         }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

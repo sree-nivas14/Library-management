@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/register',[Controller::class,'register'])->name('register');
-Route::post('/signout',[Controller::class,'signout'])->name('signout')->middleware('auth:api');
+Route::get('/signout',[Controller::class,'signout'])->name('signout')->middleware('auth:api');
 Route::post('/login',[Controller::class,'login'])->name('login');
 Route::get('/details',[Controller::class,'details'])->name('details')->middleware('auth:api');
 

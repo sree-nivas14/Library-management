@@ -33,7 +33,12 @@ const BookDetailsUploadModal = ({
         validationSchema={Yup.object({
           title: Yup.string().required("Title is required"),
           author: Yup.string().required("Author name is required"),
-          isbn: Yup.string().required("ISBN is required"),
+          isbn: Yup.string()
+            .required("ISBN is required")
+            .matches(
+              /^\d{10}(\d{3})?$/,
+              "Identity number must be 10 or 13 digits"
+            ),
           genre: Yup.string().required("Genre is required"),
           publication_date: dateValidation,
           copies: Yup.string().required("Copies is required"),

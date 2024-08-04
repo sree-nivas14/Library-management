@@ -16,15 +16,10 @@ class Controller extends BaseController
 
     public function register(Request $request){
         try {
-            //     $data_exists = User::where('email', $request->email)->where('password',$request->password)->count();
-            //     if($data_exists == 1){
-            //         $response = 0;
-            //     }else{
-            //         $response = 1;
-            //     }
             if(Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])){
                 $user=Auth::user();
                 $response['token']=$user->createToken('ReactApp');
+                $response['user']=$user->name;
                 $response['role']=($user->is_admin == 1) ? 'admin' : 'user';
                 return response()->json($response,200);
             }else{
@@ -35,16 +30,19 @@ class Controller extends BaseController
         }
     }
 
-    public function signout(Request $request){dd(Auth::guard('api')->check());
-        Auth::user()->tokens->each(function($token, $key) {
-            $token->delete();
-        });
+    public function signout(Request $request){
+        try {
+            Auth::user()->tokens->each(function($token, $key) {
+                $token->delete();
+            });
 
-        return response()->json('success');
+            return response()->json('success');
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Failed to fetch posts.'], 500);
+        }
     }
 
     public function login(Request $request) {
-        // dd($request->all(), $request->input('email'));
         if(Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])){
             $user=Auth::user();
             $response['token']=$user->createToken('ReactApp');
@@ -55,9 +53,6 @@ class Controller extends BaseController
         }
     }
     public function details(Request $request) {
-        // $user=Auth::user();
-        // $response['user']=$user;
-        // return response()->json($response,200);
         if (Auth::guard('api')->check())
         {
             $user=Auth::user();

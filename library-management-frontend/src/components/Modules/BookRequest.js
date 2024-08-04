@@ -25,11 +25,9 @@ function BookRequest() {
             type: "error",
           });
         }
-        // setData(response.data);
       })
       .catch(function (error) {
         document.getElementById("fp-container").style.visibility = "hidden";
-        //console.log(error.response);
         alert(error.response.data.message);
       });
   };
@@ -40,12 +38,10 @@ function BookRequest() {
       .getAvailableBooks()
       .then((response) => {
         document.getElementById("fp-container").style.visibility = "hidden";
-        //console.log(response.data);
         setData(response.data);
       })
       .catch(function (error) {
         document.getElementById("fp-container").style.visibility = "hidden";
-        //console.log(error.response);
         alert(error.response.data.message);
       });
   };
@@ -131,11 +127,9 @@ function BookRequest() {
         customBodyRenderLite: (dataIndex) => {
           if (datas[dataIndex].copies == 0) {
             return (
-              // <IconButton>
               <button class="btn btn-primary blur_button mx-2">
                 Send Request <i class="fa-solid fa-paper-plane"></i>
               </button>
-              // </IconButton>
             );
           } else {
             return (
@@ -156,7 +150,6 @@ function BookRequest() {
   ];
 
   useEffect(() => {
-    // viewStudentList();
     getAvailableBooks();
   }, []);
 
@@ -166,7 +159,7 @@ function BookRequest() {
     <div className="fluid-container">
       <ToastContainer position="top-right" theme="dark" />
 
-      <div className="top_menu p-3 d-flex justify-content-start align-items-center">
+      <div className="top_menu p-2 d-flex justify-content-start align-items-center">
         <div className="px-3">
           <i className="fa-solid fa-paper-plane fa-2x icon_design "></i>
         </div>
@@ -178,7 +171,6 @@ function BookRequest() {
         <div class="card m-5 p-3 ">
           <div class="card-body">
             <Datatable
-              // handledelete={handledelete}
               columns={columns}
               data={datas}
               tablename={"Book List"}

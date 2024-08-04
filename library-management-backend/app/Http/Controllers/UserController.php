@@ -32,7 +32,6 @@ class UserController extends Controller
     public function addUser(Request $request)
     {
         try {
-            // dd($request->all());
             $exists = User::where('id_no', $request->identity_no)
                     ->orWhere('email', $request->email)
                     ->orWhere('phone_number', $request->phone_no)
@@ -64,7 +63,7 @@ class UserController extends Controller
             $dataIsPresent = User::where('id_no', $request->identity_no)
                     ->where('name', $request->name)
                     ->where('email', $request->email)
-                    ->where('password', Hash::make($request->password))
+                    // ->where('password', Hash::make($request->password))
                     ->where('phone_number', $request->phone_no)
                     ->where('role', $request->role)
                     ->where('id',$request->id)
@@ -75,7 +74,7 @@ class UserController extends Controller
                 User::where('id', $request->id)->update([
                     'name'          =>  $request->name,
                     'email'         =>  $request->email,
-                    'password'      =>  Hash::make($request->password),
+                    // 'password'      =>  Hash::make($request->password),
                     'phone_number'  =>  $request->phone_no,
                     'role'          =>  $request->role,
                     'is_admin'      => ($request->role == 'admin') ? 1 : 0,

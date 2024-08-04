@@ -12,7 +12,6 @@ class BookController extends Controller
 {
     public function getBookList()
     {
-        // dd(Auth::user());
         try {
                 $bookData = Book::all();
                 return response()->json($bookData,200);

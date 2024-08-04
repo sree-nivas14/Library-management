@@ -162,15 +162,16 @@ body.collapsed .expand-btn img {
 }
 
 .side_top_nav {
-  font-size: 28px;
+  font-size: 20px;
   letter-spacing: 2px;
-  line-height: 26px;
+  line-height: 22px;
   font-weight: 600;
   color: #28282b;
 }
 .side_sub_top_nav {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 18px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  line-height: 22px;
   color: #28282b;
+  font-weight: 600;
 }
